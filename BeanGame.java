@@ -14,6 +14,8 @@ public class BeanGame extends Application{
   @Override // Override the start method in the Application class
   //Make a start place to make computer know where we start
   public void start(Stage primaryStage){
+    BallPane ball = new BallPane();
+
     //Create a pane named panel
     Pane panel = new Pane();
     //Draw the edge with Polyline
@@ -61,6 +63,7 @@ public class BeanGame extends Application{
     }
 
     //Make a scene to contain the panel
+    panel.getChildren().add(ball);
     Scene scene = new Scene(panel, 460 , 380 , Color.BLACK);
 
     //Set title of the program
