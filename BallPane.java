@@ -11,9 +11,10 @@ import javafx.util.Duration;
 public class BallPane extends Pane {
   public final double radius = 5;
   private double x = 230, y = radius;
-  private double dx = 0, dy = 1;
+  private double dx = 0, dy = 2;
   private Circle circle = new Circle(x, y, radius);
   private Timeline animation;
+  private double direction;
 
   public BallPane() {
     circle.setFill(Color.GRAY); // Set ball color
@@ -49,12 +50,21 @@ public class BallPane extends Pane {
 
   protected void moveBall() {
     // Check boundaries
-    if (y == 100) {
-      dx = -0.5;// Change ball move direction
+    if (y == 95) {
+      dx = -1;// Change ball move direction
+      direction = (int)(Math.random()*2);
+      if (direction == 0)
+        dx *= -1;
     }
-    if ( y == 130 || y == 160 || y == 190 || y == 220 || y == 250 || y == 280 ){
-      dx *= -1;// Change ball move direction
+    if ( y == 125 || y == 155 || y == 185 || y == 215 || y == 245 || y == 275 ){
+      direction = (int)(Math.random()*2);
+      if (direction == 0)
+        dx *= -1;// Change ball move direction
     }
+    if (y == 305)
+      dx = 0;
+    if (y == 355)
+      dy = 0;
 
     // Adjust ball position
     x += dx;
