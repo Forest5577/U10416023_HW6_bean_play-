@@ -8,13 +8,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.shape.*;
+import java.util.*;
 
 //Name class BeanGame which is extended from Application
 public class BeanGame extends Application{
+  int n = 0;
   @Override // Override the start method in the Application class
   //Make a start place to make computer know where we start
   public void start(Stage primaryStage){
-    BallPane ball = new BallPane();
+    ArrayList<BallPane> ball = new ArrayList<>();
 
     //Create a pane named panel
     Pane panel = new Pane();
@@ -62,8 +64,15 @@ public class BeanGame extends Application{
       panel.getChildren().add(circle[x]);
     }
 
+    panel.setOnMousePressed(e ->{
+      ball.add(new BallPane());
+      panel.getChildren().add(ball.get(n));
+      ball.get(n).requestFocus();
+
+      n++;
+    });
+
     //Make a scene to contain the panel
-    panel.getChildren().add(ball);
     Scene scene = new Scene(panel, 460 , 380 , Color.BLACK);
 
     //Set title of the program
